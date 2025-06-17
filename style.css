@@ -36,16 +36,47 @@ body {
 
 .result-wrapper {
   position: fixed;
-  bottom: 10px;
+  /* bottom: 10px; */ /* Removed */
+  /* left: 50%; */ /* Removed */
+  /* transform: translateX(-50%); */ /* Removed */
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  background-color: #101014;
-  font-size: 35px;
-  height: 150px;
-  width: 350px;
+  transform: translate(-50%, -50%); /* Centering */
+  background-color: rgba(16, 16, 20, 0.9); /* Slightly transparent background */
+  font-size: 48px; /* Increased font size for the wrapper */
+  /* height: 150px; */ /* Let height be auto or set a min-height */
+  min-height: 150px;
+  width: 350px; /* Can be adjusted or set to min-width */
+  min-width: 300px;
   color: white;
-  padding: 15px;
-  display: none;
+  padding: 25px; /* Adjusted padding */
+  display: none; /* Initially hidden, will be shown by JS */
+  text-align: center; /* Center text content */
+  border-radius: 10px; /* Optional: rounded corners */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); /* Subtle box shadow */
+}
+
+.result-wrapper h3 { /* Target h3 specifically for very large font */
+  font-size: 80px;
+  margin-bottom: 10px; /* Add some space below the number */
+}
+
+.result-wrapper p { /* Style for the "MS" text */
+  font-size: 30px;
+}
+
+
+@keyframes resultAnimation {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.result-wrapper.show {
+  display: block; /* Or flex/grid if needed for internal alignment */
+  /* Forcing display to block if it was something else.
+     Ensure internal elements of result-wrapper are styled for block layout if this is chosen.
+     If result-wrapper itself needs to be a flex container for its children, use display: flex; */
+  animation: resultAnimation 0.3s ease-out forwards;
 }
 
 h3 {
@@ -53,4 +84,15 @@ h3 {
 }
 p {
   margin: 0;
+}
+
+#high-score-display {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  background-color: #101014; /* Optional: to match result-wrapper background */
+  border-radius: 5px; /* Optional: for rounded corners */
 }
